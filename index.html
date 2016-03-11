@@ -61,7 +61,7 @@
               <div class="col-md-6">
                     <a href="#" class="btn btn-lg btn-default" onclick="toggler('register');">Register</a>
                 </div>
-              
+              <!-- *** Login Form *** -->
               <div class="col-md-12 hidden" id="login">
                 <form>
                   <div class="form-group">
@@ -73,29 +73,30 @@
                 </form>
 
               </div>
+            <!-- *** END Login Form *** -->
               
+            <!-- *** Register Form *** -->    
               <div class="col-md-12 hidden" id="register">
-                <form>
+                <form onsubmit="registerUser()">
                   <div class="form-group">
                     <label for="registerUsername">Username</label>
-                    <input type="email" class="form-control" id="registerUsername" placeholder="Username">
+                    <input type="text" class="form-control" id="registerUsername" placeholder="Username">
                   </div>
                     <div class="form-group">
                     <label for="registerVisibleName">Display Name</label>
-                    <input type="email" class="form-control" id="registerDisplayName" placeholder="Display Name">
+                    <input type="text" class="form-control" id="registerDisplayName" placeholder="Display Name">
                   </div>
                     
                     <div class="checkbox">
                         <label>
-                          <input type="checkbox"> *I Have Read The Disclaimer
+                          <input type="checkbox" id="disclaimer"> *I Have Read The Disclaimer
                         </label>
                     </div>
                     
                     <button type="submit" class="btn btn-default">Submit</button>
-                        
-                  
                 </form>
               </div>
+            <!-- *** END Register Form *** -->    
               
             </div>
           </div>
@@ -122,34 +123,7 @@
     
     <script   src="https://code.jquery.com/jquery-2.2.1.min.js"   integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="   crossorigin="anonymous"></script>
     
-    <script>
-        //Form Toggler
-        function toggler(divId) {
-            $("#" + divId).toggleClass('hidden');
-        }
         
-        //Load Different Pages
-        function loadPage(page){
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("innercover").innerHTML = xmlhttp.responseText;
-                }
-            };
-        if(page == "Home"){
-            xmlhttp.open("GET","home.php",true);
-            xmlhttp.send();
-        }else if(page == "Stats"){
-            xmlhttp.open("GET","stats.php",true);
-            xmlhttp.send();
-        }else if(page == "Leaderboard"){
-            xmlhttp.open("GET","leaderboard.php",true);
-            xmlhttp.send();
-        }else{
-            xmlhttp.open("GET","error.php",true);
-            xmlhttp.send();
-        }
-    }
-    </script>
+    <script src="src/irelandScript1-0.js"></script>
   </body>
 </html>
