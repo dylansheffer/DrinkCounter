@@ -7,22 +7,21 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
     <title>Drink Counter</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/cover.css" rel="stylesheet">
+    <link href="css/cover.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/js/ie-emulation-modes-warning.js"></script>
+    <script src="js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -44,15 +43,15 @@
               <h3 class="masthead-brand">Drink Counter</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Stats</a></li>
-                  <li><a href="#">Leaderboard</a></li>
+                  <li class="active"><a href="#home" onclick="loadPage('Home')">Home</a></li>
+                  <li><a href="#stats" onclick="loadPage('Stats')">Stats</a></li>
+                  <li><a href="#leaderboard" onclick="loadPage('Leaderboard')">Leaderboard</a></li>
                 </ul>
               </nav>
             </div>
           </div>
 
-          <div class="inner cover">
+          <div class="inner cover" id="innercover">
             <h1 class="cover-heading">Welcome to Drink Counter!</h1>
             <p class="lead">You can log in or create a new user below. The Username will be used to log in in the future (so don't forget it) and the Display Name is what we'll call you.</p>
             <div class="lead">
@@ -70,7 +69,7 @@
                     <input type="email" class="form-control" id="loginUsername" placeholder="Username">
                   </div>
                     
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default" onclick="loadPage('Home')">Submit</button>
                 </form>
 
               </div>
@@ -124,9 +123,33 @@
     <script   src="https://code.jquery.com/jquery-2.2.1.min.js"   integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="   crossorigin="anonymous"></script>
     
     <script>
+        //Form Toggler
         function toggler(divId) {
             $("#" + divId).toggleClass('hidden');
         }
+        
+        //Load Different Pages
+        function loadPage(page){
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("innercover").innerHTML = xmlhttp.responseText;
+                }
+            };
+        if(page == "Home"){
+            xmlhttp.open("GET","home.php",true);
+            xmlhttp.send();
+        }else if(page == "Stats"){
+            xmlhttp.open("GET","stats.php",true);
+            xmlhttp.send();
+        }else if(page == "Leaderboard"){
+            xmlhttp.open("GET","leaderboard.php",true);
+            xmlhttp.send();
+        }else{
+            xmlhttp.open("GET","error.php",true);
+            xmlhttp.send();
+        }
+    }
     </script>
   </body>
 </html>
